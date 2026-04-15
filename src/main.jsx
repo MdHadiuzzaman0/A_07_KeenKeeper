@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from "react-router";
-// import Home from './Home.jsx';
+import Home from './Home.jsx';
 import Root from './Root.jsx';
 // import Timeline from './Timeline.jsx';
 // import Stats from './Stats.jsx';
@@ -18,7 +18,11 @@ const router = createBrowserRouter([
     path: "/",
     Component: Root, 
     children: [
-      // { index: true, Component: Home },
+      { 
+        index: true, 
+        Component: Home,
+        loader: () => friendsPromise 
+      },
       // { path: "timeline", Component: Timeline },
       // { path: "stats", Component: Stats },
       // {
