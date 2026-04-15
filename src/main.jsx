@@ -10,6 +10,7 @@ import Timeline from './Timeline.jsx';
 import Stats from './Stats.jsx';
 import MotherProvider from './MotherProvider.jsx';
 import FriendDetails from './FriendDetails.jsx';
+import Error from './Error.jsx';
 
 const friendsPromise = fetch('/data.json').then(res => res.json());
 
@@ -32,10 +33,13 @@ const router = createBrowserRouter([
           <Suspense fallback={<div>Loading...</div>}>
             <FriendDetails />
           </Suspense>
-        
       }
     ]
   },
+  {
+    path: "*",
+    Component: Error,
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

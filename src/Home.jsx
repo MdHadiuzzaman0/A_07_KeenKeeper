@@ -18,7 +18,7 @@ const Home = () => {
                 <StatsSectionInHome friendsData={friendsData} />
                 <hr className='opacity-10 my-9'/>
                 <h3 className='text-2xl font-semibold'>Your Friends</h3>
-                <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<span className="loading loading-dots loading-xl flex justify-self-center-safe"></span>}>
                    <Friends />
                 </Suspense> 
 

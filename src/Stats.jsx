@@ -34,7 +34,7 @@ const Stats = () => {
 
     return (
         <div >
-            <div className="w-10/12 mx-auto mt-20 p-10 rounded-2xl shadow-md hover:shadow-lg ">
+            <div className="w-10/12 mx-auto bg-white mt-20 p-10 rounded-2xl shadow-md hover:shadow-lg ">
 
 
                 <h1 className="text-center text-xl font-bold mb-15">Overview of the whole activity</h1>

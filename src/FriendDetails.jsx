@@ -26,7 +26,7 @@ const FriendDetails = () => {
         <div>
             <h1 className='text-4xl font-semibold text-center mt-15'> {selectedFrnd.name}</h1>
 
-            <div className="px-10 py-10 rounded-2xl border border-gray-200 shadow-lg max-w-5xl mx-auto mt-6">
+            <div className="px-10 py-10 rounded-2xl border border-gray-200 shadow-lg max-w-5xl mx-auto mt-6 bg-white">
                 <div className="flex flex-col md:flex-row gap-8">
 
                     <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm w-full md:max-w-sm">

@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const Root = () => {
     return (
-        <div>
+        <div className='bg-[#f4f7f6]'>
             <Navbar />
             <Outlet />
             <ToastContainer position='top-center' autoClose={1000} />

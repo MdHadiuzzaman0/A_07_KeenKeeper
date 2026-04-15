@@ -82,7 +82,7 @@ const Timeline = () => {
 
                 {
                     modifiedData.map((data, index) =>
-                        <div key={index} className='border border-gray-200 p-4 rounded-lg mb-3'>
+                        <div key={index} className='border border-gray-200 p-4 rounded-lg mb-3 bg-white'>
                             {data.act === "Call" ?
                                 <div>
                                     <p className='text-green-500 text-2xl font-semibold'> <img src="/call.png" className='inline w-5' alt="" /> Calling to {data.name}</p>
