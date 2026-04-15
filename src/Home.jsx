@@ -1,14 +1,14 @@
 import React, { Suspense, use, useContext } from 'react';
-// import { DataCenter } from './MotherProvider';
+import { DataCenter } from './MotherProvider';
 import HeroSection from './HeroSection';
 import StatsSectionInHome from './StatsSectionInHome';
-// import Friends from './Friends';
+import Friends from './Friends';
 import { HiH1 } from 'react-icons/hi2';
 import { useLoaderData } from 'react-router';
 
 const Home = () => {
 
-    //  const friendsData = useLoaderData();
+     const friendsData = useLoaderData();
         // console.log(friendsData);
 
     return (
@@ -18,10 +18,10 @@ const Home = () => {
                 <StatsSectionInHome friendsData={friendsData} />
                 <hr className='opacity-10 my-9'/>
                 <h3 className='text-2xl font-semibold'>Your Friends</h3>
-                {/* <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<h1>Loading...</h1>}>
                    <Friends />
-                </Suspense>  */}
-              
+                </Suspense> 
+
                 
             </div>
             

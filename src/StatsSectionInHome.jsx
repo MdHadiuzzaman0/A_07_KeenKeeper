@@ -1,15 +1,15 @@
 import React, { use, useContext } from 'react';
-// import { DataCenter } from './MotherProvider';
+import { DataCenter } from './MotherProvider';
 
 const StatsSectionInHome = ({friendsData}) => {
     
-    // const friends = friendsData;
-    // const onTrackLength = friends.filter(friend => friend.status === "on-track").length;
-    // const overdueLength = friends.filter(friend => friend.status === "overdue").length;
-    // console.log(onTrackLength);
+    const friends = friendsData;
+    const onTrackLength = friends.filter(friend => friend.status === "on-track").length;
+    const overdueLength = friends.filter(friend => friend.status === "overdue").length;
+    console.log(onTrackLength);
     
-    // const {clickedData} = useContext(DataCenter);
-    // const statsClass = `bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm`;
+    const {clickedData} = useContext(DataCenter);
+    const statsClass = `bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm`;
 
     return (
         <div>
