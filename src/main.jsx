@@ -7,7 +7,7 @@ import { RouterProvider } from "react-router";
 import Home from './Home.jsx';
 import Root from './Root.jsx';
 import Timeline from './Timeline.jsx';
-// import Stats from './Stats.jsx';
+import Stats from './Stats.jsx';
 import MotherProvider from './MotherProvider.jsx';
 import FriendDetails from './FriendDetails.jsx';
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         loader: () => friendsPromise 
       },
       { path: "timeline", Component: Timeline },
-      // { path: "stats", Component: Stats },
+      { path: "stats", Component: Stats },
       {
         path: "friend/:friendId",
         loader: () => friendsPromise,
@@ -40,10 +40,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <MotherProvider> */}
+    <MotherProvider>
       <RouterProvider router={router}>
         <App />
       </RouterProvider>
-    {/* </MotherProvider> */}
+    </MotherProvider>
   </StrictMode>,
 )
