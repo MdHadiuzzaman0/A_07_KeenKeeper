@@ -41,12 +41,17 @@ const MotherProvider = ({ children }) => {
         }
     }
 
-     //console.log(call.length, text.length, video.length);
+    //  console.log(call.length, text.length, video.length);
 
-    useEffect
+    function handleAllClear(){
+        setClickedData([]);
+        setCall([]);
+        setText([]);
+        setVideo([]);
+    }
 
     const value = {
-        friendsPromise, clickedData, setClickedData, handleBtn, call, text, video
+        friendsPromise, clickedData, setClickedData, handleBtn, call, text, video, handleAllClear
     }
 
     return <DataCenter.Provider value={value}>

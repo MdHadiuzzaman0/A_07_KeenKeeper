@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 const Timeline = () => {
 
-    const { clickedData, setClickedData } = useContext(DataCenter);
+    const { clickedData, handleAllClear} = useContext(DataCenter);
     // console.log(clickedData);
 
     const navigate = useNavigate();
@@ -13,14 +13,15 @@ const Timeline = () => {
     const [modifiedData, setModifiedData] = useState([]);
     console.log(modifiedData);
     
-
-    const [name, setName] = useState('')
+    
     function handle(e){
         e.preventDefault();
         const value = e.target.name.value;
     const searchValue = value.toLowerCase().trim();
     // console.log(searchValue);
     const name = clickedData.filter(data => data.name.toLowerCase().includes(searchValue) || data.act.toLowerCase().includes(searchValue) || data.displayTime.toLowerCase().includes(searchValue));
+    console.log(name);
+    
     setModifiedData(name)
     }
     // console.log(name);
@@ -106,7 +107,7 @@ const Timeline = () => {
 
             <div className="flex flex-col md:flex-row justify-center mx-auto w-5/12  gap-3 mt-15">
                 <button onClick={() => navigate(-1)} className='btn btn-warning w-50 text-xl p-7'>Go Back</button>
-                <button onClick={() => setClickedData([])} className='btn btn-warning w-50  text-xl p-7'>Clear All</button>
+                <button onClick={handleAllClear} className='btn btn-warning w-50  text-xl p-7'>Clear All</button>
             </div>
         </div>
     );

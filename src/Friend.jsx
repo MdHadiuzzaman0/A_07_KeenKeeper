@@ -11,7 +11,8 @@ const Friend = ({friend}) => {
     }
 
     return (
-        <div onClick={() => handleDetail(friend)} className="relative border-2 border-gray-300 shadow-sm rounded-lg py-7 flex flex-col items-center space-y-2 hover:shadow-lg hover:bg-green-100 transition duration-300">
+          <div onClick={() => handleDetail(friend)} className={`relative border-4 ${friend.status === "overdue" ? ' border-red-300' : friend.status === "almost due" ? ' border-green-200' : ' border-green-500'} shadow-sm rounded-lg py-7 flex flex-col items-center space-y-2 hover:shadow-lg hover:bg-green-100 transition duration-300 cursor-pointer`}>
+
             <img src={friend.picture} className="rounded-full w-30" alt="" />
             <h1 className='font-bold text-2xl'>{friend.name}</h1>
             <h3 className='font-semibold opacity-70 text-lg'>{friend.days_since_contact}d ago</h3>

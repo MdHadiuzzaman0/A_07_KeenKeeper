@@ -11,7 +11,8 @@ const Stats = () => {
     useEffect(() => {
         if (call.length === 0 && text.length === 0 && video.length === 0) {
             setData([
-                { name: 'No Activity', value: 100, fill: '#FF0000' }
+                { name: 'No Activity', value: 100, fill: '#FF0000' },
+                // { name: 'No Activity', value: 0, fill: '#FF0000' },
             ])
         }
         else {
