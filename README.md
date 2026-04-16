@@ -1,4 +1,4 @@
-
+<img width="1376" height="768" alt="Cover image of keenkeeper" src="https://github.com/user-attachments/assets/87ff22fb-1b40-41f4-9e61-0658075a5cc4" />
 
 <div align="center">
 
@@ -41,6 +41,10 @@ This project focuses on **React state management, Context API, React Router v7, 
 - **Data Source:** Local JSON (`/data.json`) via `fetch()` with Promise-based loading
 - **Architecture:** Component-based with Global State via Context API (`MotherProvider`)
 
+<hr/>
+
+## 🎨 UI 
+https://github.com/user-attachments/assets/6bd3ca7f-382d-4048-844b-871251bea38e
 <hr/>
 
 ## ✨ Features
@@ -131,125 +135,3 @@ Textile Engineering Graduate | KUET | Frontend Developer focused on building sma
   <p>© 2026 FriendKeeper — Made with 🌿 by Md. Hadiuzzaman</p>
 </div>
 
-
-
-
-
-................
-.
-.
-.
-
-
-.
-
-.
-.
-.
-.
-
-.
-.
-
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-
-...
-
-
-
-.
-.
-
-.
-.
-.
-.
-.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1 align="center">
-
-<img width="41" height="40" alt="logo" src="https://github.com/user-attachments/assets/392fb934-139f-41f5-94b4-a181123ff402" /> **<sapn style="font-size: 39px;">English Janala</span>** <br>
-<p style="font-size: 14px; font-style: italic;">
-Empowering your English journey, one word at a time.
-</p>
-
-
-## 📖 Overview
-**English Janala** is an interactive web application designed to make learning English vocabulary easy, engaging and accessible for everyone. This project focuses on **dynamic content loading from external API, real-time search functionality and interactive learning features (model & built-in pronunciation option)**.
-
-<hr></hr>
-
-## 🔗 Live Site Link
-👉 https://mdhadiuzzaman0.github.io/English_Janala/
-<hr></hr>
-
-
-## 🛠️ Technologies Used
-- **Frontend:** HTML5, Vanilla JavaScript (ES6+)
-- **Styling:** Tailwind CSS, DaisyUI
-- **Data Source:** Open API
-- **DOM Manipulation & Event Handling**
-- Responsive Web Design Principles
-<hr></hr>
-
-## ✨ Features 
-- **Dynamic Lesson Exploration:** Browse and learn from various lessons fetched in real-time from an API.
-- **Instant Vocabulary Search:**  A smart search bar to find any word from the database instantly.
-- **Detailed Word Insights:**  Interactive modals that show meanings, synonyms, and usage examples.
-- **Audio Pronunciation:**  Built-in tool using the Web Speech API to hear the correct pronunciation of words.
-- **Fully Responsive:**  A modern, mobile-friendly interface built with Tailwind CSS and DaisyUI.
-<hr></hr>
-
-## ⚙️ Core Implementation Concepts
-- **Modular Scripting:**  Clean, function-based code structure for better maintainability and debugging.
-
-- **Dynamic State Management:**  Real-time UI updates (button states and content rendering) via DOM manipulation.
-
-- **Async API Handling:**  Efficiently managed asynchronous data flow using fetch() and Promise-based programming.
-
-- **Event-Driven UI:**  Responsive event listeners to handle user interactions like searching, clicking and voice triggering.
-
-- **Robust Input Validation:**  Implemented defensive techniques (e.g., .trim(), case-insensitive filtering) to handle user inputs and edge cases gracefully.-
-<hr></hr>
-
-
-## 👤 Author
-**<span style="font-size: 25px;">Md.Hadiuzzaman</span>**
-
-Textile Engineering Graduate | KUET | Frontend Developer focused on building smart, responsive user applications. Passionate about mastering the Backend ecosystem and creating seamless interactive experiences.
-<hr></hr>
-
-
-## 🎨 UI 
