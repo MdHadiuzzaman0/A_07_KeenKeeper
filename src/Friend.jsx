@@ -11,7 +11,7 @@ const Friend = ({friend}) => {
     }
 
     return (
-          <div onClick={() => handleDetail(friend)} className={`relative border-4 ${friend.status === "overdue" ? ' border-red-300' : friend.status === "almost due" ? ' border-green-200' : ' border-green-500'} shadow-sm rounded-lg py-7 flex flex-col items-center space-y-2 hover:shadow-lg hover:bg-green-100 transition duration-300 cursor-pointer`}>
+          <div onClick={() => handleDetail(friend)} className={`relative border-l-4 ${friend.status === "overdue" ? ' border-red-300' : friend.status === "almost due" ? ' border-green-200' : ' border-green-500'} shadow-md rounded-lg py-7 flex flex-col items-center space-y-2 hover:shadow-lg hover:bg-blue-100 transition duration-300 cursor-pointer`}>
 
             <img src={friend.picture} className="rounded-full w-30" alt="" />
             <h1 className='font-bold text-2xl'>{friend.name}</h1>
