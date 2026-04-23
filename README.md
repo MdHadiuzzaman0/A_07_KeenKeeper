@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <h1>🌿 FriendKeeper: Personal Relationship Manager</h1>
+  <h1>🌿 KeenKeeper: Personal Relationship Manager</h1>
 
   <p><em>Nurture the connections that matter most — one interaction at a time.</em></p>
 
@@ -18,7 +18,7 @@
 
 ## 📖 Overview
 
-**FriendKeeper** is a personal relationship management web application designed to tracks your interactions, reminds you when it's time to reconnect and gives you a beautiful dashboard to manage all your friendships in one place.
+**KeenKeeper** is a personal relationship management web application designed to tracks your interactions, reminds you when it's time to reconnect and gives you a beautiful dashboard to manage all your friendships in one place.
 
 This project focuses on **React state management, Context API, React Router v7, real-time interaction tracking and data visualization** — all wrapped in a clean, responsive UI.
 
