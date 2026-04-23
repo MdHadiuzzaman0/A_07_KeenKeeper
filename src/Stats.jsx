@@ -1,76 +1,80 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DataCenter } from "./MotherProvider";
-import { Pie, PieChart, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { FaSquare } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Stats = () => {
     const { call, text, video } = useContext(DataCenter);
-    console.log(call.length, text.length, video.length);
-
     const [data, setData] = useState([]);
+
     useEffect(() => {
         if (call.length === 0 && text.length === 0 && video.length === 0) {
             setData([
-                { name: 'No Activity', value: 100, fill: '#FF0000' },
-                // { name: 'No Activity', value: 0, fill: '#FF0000' },
-            ])
-        }
-        else {
+                { name: 'No Activity', value: 100, fill: '#ef4444' },
+            ]);
+        } else {
             setData([
-                { name: 'Call', value: call.length, fill: '#0088FE' },
-                { name: 'Text', value: text.length, fill: '#00C49F' },
+                { name: 'Calls', value: call.length, fill: '#0088FE' },
+                { name: 'Texts', value: text.length, fill: '#00C49F' },
                 { name: 'Video', value: video.length, fill: '#FFBB28' }
-            ])
+            ]);
         }
     }, [call.length, text.length, video.length]);
 
-
-    //    const data = (call.length === 0 && text.length === 0 && video.length === 0)
-    //     ? [{ name: 'No Activity', value: 100, fill: '#FF0000' }]
-    //     : [
-    //         { name: 'Call', value: call.length, fill: '#0088FE' },
-    //         { name: 'Text', value: text.length, fill: '#00C49F' },
-    //         { name: 'Video', value: video.length, fill: '#FFBB28' }
-    //     ];
-
     return (
-        <div >
-            <div className="w-10/12 mx-auto bg-white mt-20 p-10 rounded-2xl shadow-md hover:shadow-lg ">
-
-
-                <h1 className="text-center text-xl font-bold mb-15">Overview of the whole activity</h1>
-                <PieChart className="mx-auto"
-                    style={{
-                        width: "100%",
-                        maxWidth: "500px",
-                        maxHeight: "80vh",
-                        aspectRatio: 1,
-                    }}
-                    responsive
-                >
-                    <Pie
-                        data={data}
-                        innerRadius="80%"
-                        outerRadius="100%"
-
-                        cornerRadius="50%"
-                        fill="#8884d8"
-
-                        paddingAngle={5}
-                        dataKey="value"
-                    />
-                    <Tooltip />
-
-                </PieChart>
-
-                <div className="mt-15 flex flex-col md:flex-row justify-center gap-5">
-                    <h3 className="text-center text-lg text-[#0088FE] font-semibold flex items-center gap-1"><FaSquare className='inline' /> Calls ({call.length})</h3>
-                    <h3 className="text-center text-lg text-[#00C49F] font-semibold flex items-center gap-1"><FaSquare className='inline' /> Texts ({text.length})</h3>
-                    <h3 className="text-center text-lg text-[#FFBB28] font-semibold flex items-center gap-1"><FaSquare className='inline' /> Video Calls ({video.length})</h3>
-                    <h3 className="text-center text-lg text-[#FF0000] font-semibold flex items-center gap-1"><FaSquare className='inline' /> No Activity </h3>
+        <div className="min-h-screen bg-[#080f1a]/90 p-6 md:px-10 pt-20">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl mx-auto bg-slate-950/80 border border-emerald-500/10 p-10 rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.5)]"
+            >
+                <h1 className="text-2xl font-bold text-center mb-10 text-emerald-400 font-serif">Overview of Activity</h1>
+                
+                {/* Chart Area */}
+                <div className="h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                            <Pie
+                                data={data}
+                                innerRadius={100}
+                                outerRadius={130}
+                                paddingAngle={8}
+                                dataKey="value"
+                                cornerRadius={10}
+                            >
+                                {data.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                                ))}
+                            </Pie>
+                            <Tooltip 
+                                contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #10b981', borderRadius: '10px', color: '#fff' }}
+                            />
+                        </PieChart>
+                    </ResponsiveContainer>
                 </div>
 
-            </div>
+                {/* Stats Legend Grid */}
+                <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center hover:border-emerald-500/30 transition-all">
+                        <p className="text-blue-500 font-bold text-lg mb-1">{call.length}</p>
+                        <p className="text-slate-400 text-sm flex items-center justify-center gap-2"> <FaSquare size={10} /> Calls</p>
+                    </div>
+                    <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center hover:border-emerald-500/30 transition-all">
+                        <p className="text-emerald-400 font-bold text-lg mb-1">{text.length}</p>
+                        <p className="text-slate-400 text-sm flex items-center justify-center gap-2"> <FaSquare size={10} /> Texts</p>
+                    </div>
+                    <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center hover:border-emerald-500/30 transition-all">
+                        <p className="text-yellow-500 font-bold text-lg mb-1">{video.length}</p>
+                        <p className="text-slate-400 text-sm flex items-center justify-center gap-2"> <FaSquare size={10} /> Video</p>
+                    </div>
+                    <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center hover:border-emerald-500/30 transition-all">
+                        <p className="text-red-500 font-bold text-lg mb-1">{call.length + text.length + video.length === 0 ? "0" : "0"}</p>
+                        <p className="text-slate-400 text-sm flex items-center justify-center gap-2"> <FaSquare size={10} /> None</p>
+                    </div>
+                </div>
+            </motion.div>
         </div>
     );
 };

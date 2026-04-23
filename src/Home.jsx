@@ -13,11 +13,11 @@ const Home = () => {
 
     return (
         <div>
-            <div className='space-y-5 mt-9 px-30'>
+            <div className='space-y-5 px-30  bg-[#080f1a]/90 min-h-screen'>
                 <HeroSection />
                 <StatsSectionInHome friendsData={friendsData} />
-                <hr className='opacity-10 my-9'/>
-                <h3 className='text-2xl font-semibold'>Your Friends</h3>
+                <hr className='mb-8'/>
+                <h3 className='text-2xl font-semibold mb-9 text-gray-50'>Your Friends</h3>
                 <Suspense fallback={<span className="loading loading-dots loading-xl flex justify-self-center-safe"></span>}>
                    <Friends />
                 </Suspense> 

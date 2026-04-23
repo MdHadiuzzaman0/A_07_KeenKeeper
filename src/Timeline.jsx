@@ -1,113 +1,112 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { DataCenter } from './MotherProvider';
 import { useNavigate } from 'react-router';
+import { motion, AnimatePresence } from "framer-motion"; // অ্যানিমেশনের জন্য
+import { BiPhone, BiMessageSquare, BiVideo } from "react-icons/bi"; // সুন্দর আইকন
 
 const Timeline = () => {
-
-    const { clickedData, handleAllClear} = useContext(DataCenter);
-    // console.log(clickedData);
-
+    const { clickedData, handleAllClear } = useContext(DataCenter);
     const navigate = useNavigate();
 
     const [sorted, setSorted] = useState('');
     const [modifiedData, setModifiedData] = useState([]);
-    console.log(modifiedData);
     
-    
-    function handle(e){
+    function handle(e) {
         e.preventDefault();
         const value = e.target.name.value;
-    const searchValue = value.toLowerCase().trim();
-    // console.log(searchValue);
-    const name = clickedData.filter(data => data.name.toLowerCase().includes(searchValue) || data.act.toLowerCase().includes(searchValue) || data.displayTime.toLowerCase().includes(searchValue));
-    console.log(name);
-    
-    setModifiedData(name)
+        const searchValue = value.toLowerCase().trim();
+        const name = clickedData.filter(data => 
+            data.name.toLowerCase().includes(searchValue) || 
+            data.act.toLowerCase().includes(searchValue) || 
+            data.displayTime.toLowerCase().includes(searchValue)
+        );
+        setModifiedData(name);
     }
-    // console.log(name);
 
-    
     useEffect(() => {
         if (sorted === '') {
-            const sortedData = [...clickedData];
-            setModifiedData(sortedData);
+            setModifiedData([...clickedData]);
+        } else if (sorted === 'Call') {
+            setModifiedData([...clickedData].filter(data => data.act === 'Call'));
+        } else if (sorted === 'Text') {
+            setModifiedData([...clickedData].filter(data => data.act === 'Text'));
+        } else if (sorted === 'Video') {
+            setModifiedData([...clickedData].filter(data => data.act === 'Video'));
+        } else if (sorted === 'Date') {
+            setModifiedData([...clickedData].sort((a, b) => b.fullTime - a.fullTime));
         }
-        else if (sorted === 'Call') {
-            const sortedData = [...clickedData].filter(data => data.act === 'Call');
-            setModifiedData(sortedData);
-        }
-        else if (sorted === 'Text') {
-            const sortedData = [...clickedData].filter(data => data.act === 'Text');
-            setModifiedData(sortedData);
-        }
-        else if (sorted === 'Video') {
-            const sortedData = [...clickedData].filter(data => data.act === 'Video');
-            setModifiedData(sortedData);
-        }
-        else if (sorted === 'Date') {
-            const sortedData = [...clickedData].sort((a, b) => b.fullTime - a.fullTime);
-            setModifiedData(sortedData);
-        }
-
-    }, [sorted, clickedData, name]);
+    }, [sorted, clickedData]);
     
-
     return (
-        <div className='px-25'>
-            <h1 className="text-3xl font-bold text-gray-900 text-center my-8">Timeline</h1>
-            <p className='text-center text-gray-500 mb-5'>Here you can see all your interactions with your friends. You can also sort them by type or date.</p>
+        <div className="min-h-screen bg-[#080f1a]/90 p-6 md:px-10 pt-10 font-sans text-slate-100">
+            <h1 className="text-4xl font-serif font-bold text-center mb-4 text-emerald-400">Timeline</h1>
+            <p className='text-center text-slate-400 mb-10'>Track your interactions with friends seamlessly.</p>
 
-            <div className='flex justify-between my-10'>          
-            <div className="dropdown dropdown-right">
-                <div tabIndex={0} role="button" className="btn">Sorted by {sorted} </div>
-                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                    <li onClick={() => setSorted('')}><a>All</a></li>
-                    <li onClick={() => setSorted('Call')}><a>Call</a></li>
-                    <li onClick={() => setSorted('Text')}><a>Text</a></li>
-                    <li onClick={() => setSorted('Video')}><a>Video call</a></li>
-                    <li onClick={() => setSorted('Date')}><a>Date</a></li>
-                </ul>
+            {/* Controls */}
+            <div className='flex flex-col md:flex-row justify-between items-center gap-4 max-w-5xl mx-auto mb-10'>            
+                <div className="dropdown dropdown-right">
+                    <div tabIndex={0} role="button" className="btn bg-slate-950 border-emerald-500/30 text-emerald-400 hover:bg-emerald-900/20">
+                        Sorted by {sorted} 
+                    </div>
+                    <ul tabIndex="0" className="dropdown-content menu bg-slate-900 border border-slate-700 rounded-box z-10 w-52 p-2 shadow-xl">
+                        <li onClick={() => setSorted('')}><a>No Sorting</a></li>
+                        <li onClick={() => setSorted('Call')}><a>Call</a></li>
+                        <li onClick={() => setSorted('Text')}><a>Text</a></li>
+                        <li onClick={() => setSorted('Video')}><a>Video call</a></li>
+                        <li onClick={() => setSorted('Date')}><a>Date</a></li>
+                    </ul>
+                </div>
+
+                <form className='flex w-full md:w-auto' onSubmit={handle}>
+                    <input type="text" name='name' placeholder="Search interactions..." className="input input-bordered w-full md:w-64 bg-slate-900 border-emerald-500/20 focus:border-emerald-500 py-5" />
+                    <button type="submit" className="btn bg-emerald-500 text-slate-950 hover:bg-emerald-400 ml-2 border-none">Search</button>
+                </form>
             </div>
 
-            <form className='flex' onSubmit={handle}>
-               <input type="text" name='name' placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-               <input type="submit" value='Search' className="btn btn-primary"/>
-            </form>
-            </div>
+            {/* List */}
+            <div className="max-w-5xl mx-auto space-y-3">
+                {modifiedData.length === 0 && (
+                    <div className='text-center border border-emerald-500/20 rounded-2xl p-10 bg-slate-950/50'>
+                        <h1 className='text-xl text-slate-400'>No interactions found yet!</h1>
+                    </div>
+                )}
 
-
-            <div>
-                {
-                    modifiedData.length === 0 && <h1 className='text-2xl text-center font-semibold border rounded-xl p-19 bg-base-300'>No interactions yet! <br /> Please go to home and interact with your friends.</h1>
-                }
-
-                {
-                    modifiedData.map((data, index) =>
-                        <div key={index} className='border border-gray-200 p-4 rounded-lg mb-3 bg-white'>
-                            {data.act === "Call" ?
+                <AnimatePresence>
+                    {modifiedData.map((data, index) => (
+                        <motion.div 
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            className='border border-emerald-500/10 p-5 rounded-xl bg-slate-950/80 hover:border-emerald-500/30 transition-all hover:shadow-[0_0_15px_rgba(16,185,129,0.1)] flex items-center justify-between'
+                        >
+                            <div className="flex items-center gap-4">
+                                {data.act === "Call" && <div className="text-green-400 bg-green-500/10 p-3 rounded-full"><BiPhone size={24} /></div>}
+                                {data.act === "Text" && <div className="text-amber-400 bg-amber-500/10 p-3 rounded-full"><BiMessageSquare size={24} /></div>}
+                                {data.act === "Video" && <div className="text-purple-400 bg-purple-500/10 p-3 rounded-full"><BiVideo size={24} /></div>}
+                                
                                 <div>
-                                    <p className='text-green-500 text-2xl font-semibold'> <img src="/call.png" className='inline w-5' alt="" /> Calling to {data.name}</p>
-                                    <h3 className='text-lg pl-7 mt-1'>{data.displayTime}</h3>
-                                </div> :
-
-                                data.act === "Text" ?
-                                    <div>
-                                        <p className='text-amber-500 text-2xl font-semibold'> <img src="/text.png" className='inline w-5' alt="" /> Sending text to {data.name} </p>
-                                        <h3 className='text-lg pl-7 mt-1'>{data.displayTime}</h3>
-                                    </div> :
-
-                                    <div>
-                                        <p className='text-purple-500 text-2xl font-semibold'> <img src="/video.png" className='inline w-5' alt="" /> Video call with {data.name} </p>
-                                        <h3 className='text-lg pl-7 mt-1'>{data.displayTime}</h3>
-                                    </div>}
-
-                        </div>)
-                }
+                                    <p className='text-lg font-semibold'>
+                                        {data.act === "Call" ? `Calling to ${data.name}` : 
+                                         data.act === "Text" ? `Sending text to ${data.name}` : 
+                                         `Video call with ${data.name}`}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            {/* Time aligned to the right */}
+                            <div className='text-sm text-slate-500 font-mono'>
+                                {data.displayTime}
+                            </div>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-center mx-auto w-5/12  gap-3 mt-15">
-                <button onClick={() => navigate(-1)} className='btn btn-warning w-50 text-xl p-7'>Go Back</button>
-                <button onClick={handleAllClear} className='btn btn-warning w-50  text-xl p-7'>Clear All</button>
+            {/* Bottom Buttons */}
+            <div className="flex justify-center gap-4 mt-15 mb-20">
+                <button onClick={() => navigate(-1)} className='btn bg-slate-800 text-slate-200 border-none hover:bg-slate-700 px-8'>Go Back</button>
+                <button onClick={handleAllClear} className='btn bg-red-500/10 text-red-400 border-red-500/20 hover:bg-red-500/20 px-8'>Clear All</button>
             </div>
         </div>
     );

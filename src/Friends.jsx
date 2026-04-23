@@ -10,7 +10,7 @@ const Friends = () => {
     
     return (
         <div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pb-25'>
                 {
                     friends.map(friend => <Friend key={friend.id} friend={friend}></Friend>)
                 }
@@ -19,4 +19,4 @@ const Friends = () => {
     );
 };
 
-export default Friends;
+export default Friends; 
