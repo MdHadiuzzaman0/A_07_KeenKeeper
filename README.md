@@ -44,7 +44,9 @@ This project focuses on **React state management, Context API, React Router v7, 
 <hr/>
 
 ## 🎨 UI 
-https://github.com/user-attachments/assets/6bd3ca7f-382d-4048-844b-871251bea38e
+https://github.com/user-attachments/assets/88e50715-578e-4230-b5e1-b9f7cfe1c700
+
+
 <hr/>
 
 ## ✨ Features
